@@ -2,6 +2,10 @@
 
 A package for exploratory data analysis and data cleaning.
 
+## Contributors
+
+Jordan Cairns, Sid Grover, Scout McKee
+
 ## Installation
 
 ```bash
