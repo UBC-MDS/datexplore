@@ -8,13 +8,21 @@ Jordan Cairns, Sid Grover, Scout McKee
 
 ## Installation
 
-```bash
+``` bash
 $ pip install datexplore
 ```
 
+## Outline
+
+Datexplore is a python package for the early stages of a data analysis project. It contains tools helpful for exploratory data analysis and data cleaning. The aim of this package is to help with some common tasks involved in these early stages of projects. The package includes tools for common EDA visualizations, data cleaning procedures, and XXXXXXXXX.
+
+Package functions:
+
+-   clean_names : this function makes all column names in a dataframe such that the names only use letters, numbers, and underscores. The capitalization format is specified using an optional parameter.
+
 ## Usage
 
-- TODO
+-   TODO
 
 ## Contributing
 
