@@ -71,3 +71,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 Please note that the `datexplore` project is released with a
 Code of Conduct. By contributing to this project you agree to abide by its terms.
+
+## Attribution
+
+This file was created with cookiecutter and the py-pkgs-cookiecutter template.
