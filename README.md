@@ -19,7 +19,7 @@ Datexplore is a python package for the early stages of a data analysis project. 
 Package functions:
 
 -   `clean_names` : This function makes all column names in a dataframe such that the names only use letters, numbers, and underscores. The capitalization format is specified using an optional parameter.
--   `detect_outliers` : This function reports on the outliers in the numerical columns of a pandas DataFrame. It calculates the interquartile range to determine the lower and upper bounds for outlier detection. The function returns a new DataFrame with information about each outlier, including its original index, the outlier value, and the extent of its deviation.
+-   `detect_outliers` : This function reports on the outliers in the numerical columns of a pandas DataFrame. The function returns a new DataFrame with information about each outlier, including its original index, the outlier value, and the extent of its deviation.
 -   `visualise` : This function generates visualizations for a pandas DataFrame to identify patterns in missing values, correlation between variables, and distribution of variables and variable pairs.
 
 ## Python Ecosystem Context
