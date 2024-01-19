@@ -57,19 +57,21 @@ This helps in identifying patterns or areas with missing data.
     >> from dataexplore import visualise
     >> visualise(df)
 """
-    plt.figure(figsize=(10, 4))
-    sns.heatmap(df.isnull(), cbar = False, cmap = 'coolwarm')
-    plt.title('Heatmap of Missing Values in DataFrame')
-    plt.xlabel('Columns')
-    plt.ylabel('Rows')
-    plt.show()
+    if not df.empty:
+        plt.figure(figsize=(10, 4))
+        sns.heatmap(df.isnull(), cbar = False, cmap = 'coolwarm')
+        plt.title('Heatmap of Missing Values in DataFrame')
+        plt.xlabel('Columns')
+        plt.ylabel('Rows')
+        plt.show()
+    
+    if not df.select_dtypes(include='number').empty: 
+        corr = df.select_dtypes(include='number').corr()
+        plt.figure(figsize=(10, 4))
+        sns.heatmap(corr, annot = True, cmap = 'coolwarm')
+        plt.title('Correlation Heatmap of Variables in DataFrame')
+        plt.show()
 
-    corr = df.corr()
-    plt.figure(figsize=(10, 4))
-    sns.heatmap(corr, annot = True, cmap = 'coolwarm')
-    plt.title('Correlation Heatmap of Variables in DataFrame')
-    plt.show()
-
-    sns.pairplot(df)
-    plt.figure(figsize=(10, 4))
-    plt.show()
+        sns.pairplot(df)
+        plt.figure(figsize=(10, 4))
+        plt.show()
