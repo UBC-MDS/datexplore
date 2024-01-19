@@ -2,21 +2,16 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def visualize(df):
-    """
-    Generate visualizations for a pandas DataFrame to analyze its content.
+def visualise(df):
+"""
+This function generates visualizations for a pandas DataFrame to identify patterns in missing values, correlation between variables, and distribution of variables and variable pairs.
 
-    This function creates three types of plots to help identify patterns in missing values, correlations between variables, and the distribution of variables and variable pairs in a DataFrame:
-    1. Heatmap of Missing Values: 
-        This visualizes the presence of missing values in the DataFrame. 
-        Each cell in the heatmap corresponds to a DataFrame value, indicating whether it is missing.
-    2. Correlation Heatmap: 
-        It displays the correlation coefficients between all pairs of columns in the DataFrame, 
-        aiding in the identification of relationships among variables.
-    3. Pairplot: 
-        This plot consists of a series of scatter sub-plots for each pair of variables, 
-        useful for observing the distribution and relationship between different variable pairs.
-
+    This function creates three types of plots:
+    1. A heatmap of missing values: Each cell in the heatmap represents a value in the DataFrame. Cells are colored differently to indicate whether the value is missing or not. 
+This helps in identifying patterns or areas with missing data.
+    2. A correlation heatmap: This heatmap shows the correlation coefficients between all pairs of columns in the DataFrame.
+       High positive or negative values indicate strong relationships, while values close to zero suggest weak relationship. This is useful for understanding the relationships between variables.
+    3. A pairplot: This creates a grid of scatter plots for each pair of variables in the DataFrame. It helps in visualizing the distribution of individual variables and the relationships between them.
     Parameters
     ----------
     df : pandas.DataFrame
@@ -30,13 +25,25 @@ def visualize(df):
     Notes
     -----
     - The function utilizes seaborn and matplotlib libraries for plotting. Ensure these libraries are imported as 'sns' for seaborn and 'plt' for matplotlib.pyplot.
-    - This function is designed for exploratory data analysis, offering a quick and comprehensive overview of the data's structure and relationships.
 
     Example Usage
     -------------
     >> from dataexplore import visualise
     >> visualise(df)
-    
-    """
+"""
+    plt.figure(figsize=(10, 4))
+    sns.heatmap(df.isnull(), cbar = False, cmap = 'coolwarm')
+    plt.title('Heatmap of Missing Values in DataFrame')
+    plt.xlabel('Columns')
+    plt.ylabel('Rows')
+    plt.show()
 
-## ADD CODE HERE (WEEK2)
+    corr = df.corr()
+    plt.figure(figsize=(10, 4))
+    sns.heatmap(corr, annot = True, cmap = 'coolwarm')
+    plt.title('Correlation Heatmap of Variables in DataFrame')
+    plt.show()
+
+    sns.pairplot(df)
+    plt.figure(figsize=(10, 4))
+    plt.show()
