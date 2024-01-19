@@ -43,7 +43,22 @@ The detect_outliers function takes an approach, similar to methods found in libr
 
 ## Usage
 
-Usage examples will be added next release, when the functions are fully implemented.
+Example usage:
+```python
+    >>> from datexplore.clean_names import clean_names
+    >>> import pandas as pd
+    >>> import seaborn as sns
+    >>> import matplotlib.pyplot as plt
+    >>> data = pd.DataFrame{'Even Numbers': [2, 4, 6, 8],'odd numbers': [1, 3, 5, 7]}
+```
+```python
+    >>> clean_data = clean_names(data)
+#returns data with clean names
+    >>> visualise(clean_data)
+# displays (up to) 3 plots
+    >>> detect_outliers(clean_data)
+# returns index, deviation and category of outliers
+```
 
 ## Contributing
 
