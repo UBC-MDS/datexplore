@@ -9,7 +9,7 @@ Jordan Cairns, Sid Grover, Scout McKee
 ## Installation
 
 ``` bash
-$ pip install datexplore
+$ pip install -i https://test.pypi.org/simple/ datexplore
 ```
 
 ## Outline
@@ -34,6 +34,12 @@ The clean_names function resembles pyjanitor’s approach
 
 The detect_outliers function takes an approach, similar to methods found in libraries like SciPy and Scikit-learn, but combines them in a single function. While these libraries provide comprehensive tools for statistical analysis, including outlier detection, Datexplore's outlier function allows all the data to be viewed within a single dataframe and a single function call, making the process simpler.
 
+## Dependencies
+
+* Python 3 or greater
+* Matplotlib.pyplot
+* Seaborn
+* pandas
 
 ## Usage
 
