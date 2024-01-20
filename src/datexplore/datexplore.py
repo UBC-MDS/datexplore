@@ -67,7 +67,7 @@ def clean_names(data, case = "snake_case"):
     return data
     
 
-def visualise(df):
+def visualise(df, display = False):
     """This function generates visualizations for a pandas DataFrame to identify patterns in missing values, correlation between variables, and distribution of variables and variable pairs.
 
     This function creates three types of plots:
