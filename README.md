@@ -60,7 +60,7 @@ Example usage:
 ```python
     >>> clean_data = clean_names(data)
 #returns data with clean names
-    >>> visualise(clean_data)
+    >>> visualise(clean_data, display = False)
 # displays (up to) 3 plots
     >>> detect_outliers(clean_data)
 # returns index, deviation and category of outliers
