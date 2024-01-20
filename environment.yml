@@ -76,7 +76,6 @@ dependencies:
       - cleo
       - coverage
       - crashtest
-      - datexplore
       - distlib
       - dulwich
       - exceptiongroup
