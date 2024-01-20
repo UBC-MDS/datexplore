@@ -4,6 +4,7 @@ def clean_names(data, case = "snake_case"):
 
     Make all column names in a dataframe such that the names only use letters, numbers, and underscores. 
     Capitalization format is specifed using the case parameter. 
+    "Unclean" column labels should be delimited by spaces for best results with case format. 
     
     Parameters
     ----------
@@ -24,3 +25,42 @@ def clean_names(data, case = "snake_case"):
     >>> data = pd.DataFrame{'Even Numbers': [2, 4, 6, 8],'odd numbers': [1, 3, 5, 7]}
     >>> clean_data = clean_names(data)
     """
+
+    if case not in ["snake_case", "CamelCase", "lowerCamelCase"]: 
+        raise ValueError("Incorrect input for case parameter")
+    
+    if not isinstance(data, pd.core.frame.DataFrame):
+        raise TypeError("Incorrect input. Data must be of type pandas.core.frame.DataFrame ")
+    
+    for label in data.columns: 
+        if not isinstance(label, str):
+            raise TypeError("All column labels must be strings")
+    
+
+    if case == "snake_case":
+        for label in data.columns:
+            new = label.replace(" ", "_")
+            for char in new:
+                if (char.isalnum() == False) and char != '_':
+                    new = new.replace(char, "")
+            new = new.lower()
+            data.rename(columns={label: new}, inplace=True)
+    
+    if case == "CamelCase":
+        for label in data.columns:
+            new = label.title()
+            for char in label:
+                if (char.isalnum() == False):
+                    new = new.replace(char, "")
+                    data.rename(columns={label: new}, inplace=True)
+    
+    if case == "lowerCamelCase":
+        for label in data.columns:
+            new = label.title()
+            for char in label:
+                if (char.isalnum() == False):
+                    new = new.replace(char, "")
+            new = new[0].lower() + new[1:]
+            data.rename(columns={label: new}, inplace=True)
+
+    return data

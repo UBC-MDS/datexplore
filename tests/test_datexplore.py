@@ -1,5 +1,10 @@
-from datexplore import datexplore
+from datexplore.datexplore import clean_names
+from datexplore.datexplore import detect_outliers
+from datexplore.datexplore import visualise
+
 import pytest
+import pandas as pd
+import numpy as np
 
 #---------------------Tests for detect_outliers()--------------------------------------------
 
@@ -161,3 +166,61 @@ def test_df_special_values():
         visualise(df)
     except Exception as e:
         pytest.fail(f"Special Values used: {e}")
+
+
+#---------------------Tests for clean_names()--------------------------------------------
+def test_clean_names_error():
+    """Test that proper Errors are raised for clean_names function with incorrect input parameters."""
+    with pytest.raises(ValueError):
+        unclean_df =  pd.DataFrame({'course code': ['531', '511', '562'],
+        'Block_number': [25, 30, 35],
+        'course Instructor    name': ['Joel', 'Quan', 'Alexi']})
+        clean_names(unclean_df, "not_a_param_option")
+    
+    with pytest.raises(TypeError):
+        not_df = pd.Series([1,2,3,4])
+        clean_names(not_df)
+    
+    with pytest.raises(TypeError):
+        no_string_df = pd.DataFrame({000: ['531', '511', '562'],
+        1.234: [25, 30, 35],
+        0000: ['Joel', 'Quan', 'Alexi']})
+        clean_names(no_string_df)
+
+def test_clean_names():
+    """Test clean_names return object"""
+    
+    unclean_df =  pd.DataFrame({'course code': ['531', '511', '562'],
+        'Block_number': [25, 30, 35],
+        'course Instructor name': ['Joel', 'Quan', 'Alexi']})
+    
+    expected_snake = pd.DataFrame({'course_code': ['531', '511', '562'],
+        'block_number': [25, 30, 35],
+        'course_instructor_name': ['Joel', 'Quan', 'Alexi']})
+    actual_snake = clean_names(unclean_df)
+
+    unclean_df =  pd.DataFrame({'course code': ['531', '511', '562'],
+        'Block_number': [25, 30, 35],
+        'course Instructor name': ['Joel', 'Quan', 'Alexi']})
+
+    expected_camel = pd.DataFrame({'CourseCode': ['531', '511', '562'],
+        'BlockNumber': [25, 30, 35],
+        'CourseInstructorName': ['Joel', 'Quan', 'Alexi']})
+    
+    actual_camel = clean_names(unclean_df, "CamelCase")
+
+    unclean_df =  pd.DataFrame({'course code': ['531', '511', '562'],
+        'Block_number': [25, 30, 35],
+        'course Instructor name': ['Joel', 'Quan', 'Alexi']})
+    
+    expected_lower_camel = pd.DataFrame({'courseCode': ['531', '511', '562'],
+        'blockNumber': [25, 30, 35],
+        'courseInstructorName': ['Joel', 'Quan', 'Alexi']})
+    actual_lower_camel = clean_names(unclean_df, "lowerCamelCase")
+
+    assert isinstance(clean_names(unclean_df), pd.core.frame.DataFrame), "Wrong return type"
+    assert list(actual_camel.columns).sort() == list(expected_camel.columns).sort(), "Incorrect clean column names, not proper CamelCase"
+    assert list(actual_snake.columns).sort() == list(expected_snake.columns).sort(), "Incorrect clean column names, not proper snake_case"
+    assert list(actual_lower_camel.columns).sort() == list(expected_lower_camel.columns).sort(), "Incorrect clean column names, not proper lowerCamelCase"
+
+    assert actual_lower_camel.shape == actual_camel.shape == actual_snake.shape == unclean_df.shape, "data frame shape should not change"
