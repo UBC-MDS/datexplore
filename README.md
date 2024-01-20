@@ -8,10 +8,16 @@ Jordan Cairns, Sid Grover, Scout McKee
 
 ## Installation
 
+The following code should be ran to install the package. 
 ``` bash
-$ pip install -i https://test.pypi.org/simple/ datexplore
+conda env create -f environment.yml
+conda activate datexplore_env
+poetry install
 ```
-
+To run the tests run: 
+``` bash
+pytest tests/
+```
 ## Outline
 
 Datexplore is a python package for the early stages of a data analysis project. It contains tools helpful for exploratory data analysis and data cleaning. The aim of this package is to help with some common tasks involved in these early stages of projects. The package includes tools for common EDA visualizations, data cleaning procedures, and detecting outlier numerical data.
@@ -54,7 +60,7 @@ Example usage:
 ```python
     >>> clean_data = clean_names(data)
 #returns data with clean names
-    >>> visualise(clean_data)
+    >>> visualise(clean_data, display = False)
 # displays (up to) 3 plots
     >>> detect_outliers(clean_data)
 # returns index, deviation and category of outliers
