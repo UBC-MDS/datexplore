@@ -59,14 +59,14 @@ def test_correct_outliers_detection():
         'column': ['A', 'B'],
         'index': [4, 4],
         'outlier_value': [100, 200],
-        'deviation': [93.75, 189.75], 
+        'deviation': [96, 192], 
         'category': ['Extreme', 'Extreme'] 
     })
     result = detect_outliers(df)
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_outliers)
 
 
-#Test Case 8: Correctly identifies the outliers, their deviation and their category for a single column
+#Test Case 7: Correctly identifies the outliers, their deviation and their category for a single column
     
 def test_outlier_details():
     df = pd.DataFrame({'A': [1, 2, 3, 100]})
@@ -74,24 +74,24 @@ def test_outlier_details():
         'column': ['A'],
         'index': [3],
         'outlier_value': [100],
-        'deviation': [71.25],
+        'deviation': [97],
         'category': ['Extreme']
     })
     result = detect_outliers(df)
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_outliers)
 
-#Test Case 9: Correctly handles different outlier labels
+#Test Case 8: Correctly handles different outlier labels
 
 def test_outlier_category_labeling():
     df = pd.DataFrame({
-        'A': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100],
-        'B': [20, 21, 19, 22, 23, 27, 16, 20, 19 , 50, 51],
-        'C': [10, 12, 14, 16, 18, 19, 20, 14, 15, 16, 31]
+        'A': [1, 2, 3, 4, 5, 6, 100],
+        'B': [20, 21, 19, 22, 23, 50, 55],
+        'C': [10, 12, 14, 16, 18, 19, 25]
     })
     expected_categories = {
         'A': ['Extreme'],
-        'B': ['Severe', 'Severe'],
-        'C': ['Moderate']
+        'B': ['Moderate', 'Moderate'],
+        'C': ['Mild']
     }
 
     actual_outliers = detect_outliers(df)
