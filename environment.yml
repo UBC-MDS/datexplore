@@ -12,6 +12,7 @@ dependencies:
   - cycler
   - fonttools
   - freetype
+  - ipykernel
   - kiwisolver
   - lcms2
   - lerc
