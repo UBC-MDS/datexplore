@@ -52,7 +52,7 @@ def clean_names(data, case = "snake_case"):
             for char in label:
                 if (char.isalnum() == False):
                     new = new.replace(char, "")
-                    data.rename(columns={label: new}, inplace=True)
+            data.rename(columns={label: new}, inplace=True)
     
     if case == "lowerCamelCase":
         for label in data.columns:

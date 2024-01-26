@@ -6,7 +6,8 @@ def clean_names(data, case = "snake_case"):
     """Clean all column names of a dataframe.
 
     Make all column names in a dataframe such that the names only use letters, numbers, and underscores. 
-    Capitalization format is specifed using the case parameter. 
+    Capitalization format is specifed using the case parameter.
+    This function works "in place" meaning it changes the input dataframe while also returning a dataframe.  
     
     Parameters
     ----------
@@ -53,7 +54,7 @@ def clean_names(data, case = "snake_case"):
             for char in label:
                 if (char.isalnum() == False):
                     new = new.replace(char, "")
-                    data.rename(columns={label: new}, inplace=True)
+            data.rename(columns={label: new}, inplace=True)
     
     if case == "lowerCamelCase":
         for label in data.columns:
