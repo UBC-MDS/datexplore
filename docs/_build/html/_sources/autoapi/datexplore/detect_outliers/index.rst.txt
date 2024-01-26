@@ -1,0 +1,49 @@
+:py:mod:`datexplore.detect_outliers`
+====================================
+
+.. py:module:: datexplore.detect_outliers
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   datexplore.detect_outliers.detect_outliers
+
+
+
+.. py:function:: detect_outliers(df)
+
+   Detect and analyze outliers in the numeric columns of a pandas DataFrame.
+
+   This function uses the Interquartile Range (IQR) and standard deviation to identify
+   outliers in the data.
+   For each numeric column, it calculates the lower and upper bounds based on the IQR.
+   Values falling outside these bounds are classified as outliers.
+   The function categorizes each outlier as 'Mild', 'Moderate', 'Severe', or 'Extreme'
+   based on its deviation from the IQR bounds and the standard deviation from the mean.
+   It returns a DataFrame containing detailed information about
+   each outlier.
+
+   :param df: The DataFrame containing the data to analyze.
+   :type df: pandas.DataFrame
+
+   :returns: * *pandas.DataFrame* -- A DataFrame containing detailed information about each outlier.
+               Columns include:
+               - 'column': The name of the column containing the outlier.
+               - 'index': The original index of the outlier in the DataFrame.
+               - 'outlier_value': The value of the outlier.
+               - 'deviation': The absolute deviation of the outlier from the nearest IQR bound.
+               - 'category': The category of the outlier ('Mild', 'Moderate', 'Severe', or 'Extreme').
+             * *Example Usage*
+             * *-------------*
+             * **>> df = pd.DataFrame({'data'** (*[1, 2, 3, 4, 5, 6, 100]})*)
+             * *>> outlier_info = detect_outliers(df)*
+             * *>> print(outlier_info)*
+
+

@@ -1,0 +1,25 @@
+:py:mod:`datexplore`
+====================
+
+.. py:module:: datexplore
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   clean_names/index.rst
+   datexplore/index.rst
+   detect_outliers/index.rst
+   visualise/index.rst
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+
+   
+
