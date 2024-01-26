@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>datexplore Example Usage &mdash; datexplore  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="datexplore" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            datexplore
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">datexplore</span></code> Example Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clean-names">Clean names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-column-name-with-a-space">For column name with a space:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-column-names-without-spaces">For column names without spaces:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exploring-the-case-parameter">Exploring the case parameter:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualise">Visualise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detect-outliers">Detect outliers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">datexplore</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">datexplore</span></code> Example Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="datexplore-example-usage">
+<h1><code class="docutils literal notranslate"><span class="pre">datexplore</span></code> Example Usage<a class="headerlink" href="#datexplore-example-usage" title="Link to this heading"></a></h1>
+<p>Here we will show how the datexplore package can be used for the early stages of a data analysis project. We will show example usages for each function in the package (<code class="docutils literal notranslate"><span class="pre">clean_names</span></code>, <code class="docutils literal notranslate"><span class="pre">visualise</span></code>, and <code class="docutils literal notranslate"><span class="pre">detect_outliers</span></code>).</p>
+<p>The early stages of data analysis projects often begin with similar steps. For many projects, data cleaning and exploratory data analysis are essential before beginning more complex analysis. Using clean data for your analysis can make your code less suceptible to bugs or errors. Additionally, performing exploratory data analysis can help to direct the analysis of your project and gives a stronger understanding of the data you are working with.</p>
+<p>This package aims to help with the early stages of a project. Specifically, it contains a function to clean the column names of tabular data, a function to detect outliers in numerical data, and a function to create useful visulaization for exploratory data analysis.</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datexplore.datexplore</span> <span class="kn">import</span> <span class="n">clean_names</span>
+<span class="kn">from</span> <span class="nn">datexplore.datexplore</span> <span class="kn">import</span> <span class="n">visualise</span>
+<span class="kn">from</span> <span class="nn">datexplore.datexplore</span> <span class="kn">import</span> <span class="n">detect_outliers</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clean-names">
+<h2>Clean names<a class="headerlink" href="#clean-names" title="Link to this heading"></a></h2>
+<p>Often times raw data contains non syntactic column names. It can be particulary troublesome when the column names contain spaces and you are working with other packages which are designed only for column names without spaces.</p>
+<section id="for-column-name-with-a-space">
+<h3>For column name with a space:<a class="headerlink" href="#for-column-name-with-a-space" title="Link to this heading"></a></h3>
+<p>An example of one such tool which does not work for column names with spaces the .query() method from the pandas library. This is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Even Numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span><span class="s1">&#39;odd numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]})</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Even Numbers &gt; 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">IPython</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">interactiveshell</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3553</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_ns</span><span class="p">)</span>
+
+  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Even Numbers &gt; 2&quot;</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">frame</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4599</span> <span class="ow">in</span> <span class="n">query</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">frame</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4725</span> <span class="ow">in</span> <span class="nb">eval</span>
+    <span class="k">return</span> <span class="n">_eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="nb">eval</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">336</span> <span class="ow">in</span> <span class="nb">eval</span>
+    <span class="n">parsed_expr</span> <span class="o">=</span> <span class="n">Expr</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">expr</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">808</span> <span class="ow">in</span> <span class="fm">__init__</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">expr</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">827</span> <span class="ow">in</span> <span class="n">parse</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_visitor</span><span class="o">.</span><span class="n">visit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">expr</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">407</span> <span class="ow">in</span> <span class="n">visit</span>
+    <span class="k">raise</span> <span class="n">e</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">expr</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">403</span> <span class="ow">in</span> <span class="n">visit</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">fix_missing_locations</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">clean</span><span class="p">))</span>
+
+  <span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">datexplore_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">ast</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">50</span> <span class="ow">in</span> <span class="n">parse</span>
+    <span class="k">return</span> <span class="nb">compile</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span>
+
+  <span class="n">File</span> <span class="o">&lt;</span><span class="n">unknown</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span>
+    <span class="n">Even</span> <span class="n">Numbers</span> <span class="o">&gt;</span><span class="mi">2</span>
+         <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, using the column name containing a space results in an error.
+Now, we can use the clean_names function to “clean” the column names of the data frame. By “cleaning” the column names, we mean that we  make all column names in a dataframe such that the names only use letters, numbers, and underscores.</p>
+<p>The clean_names function takes a pandas dataframe containing data with column names as an input. There is also an optional parameter, case, which specifies the capitalization structure of the output dataframe (more on this later).</p>
+</section>
+<section id="for-column-names-without-spaces">
+<h3>For column names without spaces:<a class="headerlink" href="#for-column-names-without-spaces" title="Link to this heading"></a></h3>
+<p>Below we use the clean_names function and show that the resulting dataframe can now be used with the .query() method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean the column names and view the resulting dataframe</span>
+<span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Even Numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span><span class="s1">&#39;odd numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]})</span>
+<span class="n">clean_df</span> <span class="o">=</span> <span class="n">clean_names</span><span class="p">(</span><span class="n">raw_df</span><span class="p">)</span>
+<span class="n">clean_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>even_numbers</th>
+      <th>odd_numbers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the .query method on the new dataframe</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">clean_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;even_numbers &gt; 2&quot;</span><span class="p">)</span>
+<span class="n">filtered_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>even_numbers</th>
+      <th>odd_numbers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This may not seem that useful for a dataframe with only two columns, but for a data frame with many columns, using the clean_names function could save a lot of time.</p>
+</section>
+<section id="exploring-the-case-parameter">
+<h3>Exploring the case parameter:<a class="headerlink" href="#exploring-the-case-parameter" title="Link to this heading"></a></h3>
+<p>The clean_names function also has an optional parameter, case, which specifics the capitalization structure of the output column names. The default value for this parameter is “snake_case” and the other options are “CamelCase” and “lowerCamelCase”. snake_case uses only lowercase letters and spaces are replaced with underscores. “CamelCase” capitalizes the first letter of a name and every letter following a space. “lowerCamelCase” results in the first letter of the name being lowercase and the first letter following a space being capitalized.
+Below are some examples using this optional parameter:</p>
+</section>
+</section>
+<section id="visualise">
+<h2>Visualise<a class="headerlink" href="#visualise" title="Link to this heading"></a></h2>
+</section>
+<section id="detect-outliers">
+<h2>Detect outliers<a class="headerlink" href="#detect-outliers" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="datexplore" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Jordan Cairns, Sid Grover, Scout McKee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
