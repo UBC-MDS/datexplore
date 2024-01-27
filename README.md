@@ -1,5 +1,5 @@
 # datexplore
-
+[![Documentation Status](https://readthedocs.org/projects/datexplore/badge/?version=latest)](https://datexplore.readthedocs.io/en/latest/?badge=latest)
 A package for exploratory data analysis and data cleaning.
 
 ## Contributors
