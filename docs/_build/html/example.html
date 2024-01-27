@@ -55,8 +55,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#exploring-the-case-parameter">Exploring the case parameter:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#visualise">Visualise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#detect-outliers">Detect outliers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualise">Visualise</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#detect-outliers">Detect outliers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Usage example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
@@ -101,6 +107,7 @@
 <span class="kn">from</span> <span class="nn">datexplore.datexplore</span> <span class="kn">import</span> <span class="n">visualise</span>
 <span class="kn">from</span> <span class="nn">datexplore.datexplore</span> <span class="kn">import</span> <span class="n">detect_outliers</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -170,9 +177,9 @@ Now, we can use the clean_names function to “clean” the column names of the 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean the column names and view the resulting dataframe</span>
-<span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Even Numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span><span class="s1">&#39;odd numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]})</span>
-<span class="n">clean_df</span> <span class="o">=</span> <span class="n">clean_names</span><span class="p">(</span><span class="n">raw_df</span><span class="p">)</span>
-<span class="n">clean_df</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Even Numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span><span class="s1">&#39;odd numbers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]})</span>
+<span class="n">clean_names</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -227,7 +234,7 @@ Now, we can use the clean_names function to “clean” the column names of the 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the .query method on the new dataframe</span>
-<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">clean_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;even_numbers &gt; 2&quot;</span><span class="p">)</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;even_numbers &gt; 2&quot;</span><span class="p">)</span>
 <span class="n">filtered_df</span>
 </pre></div>
 </div>
@@ -275,19 +282,505 @@ Now, we can use the clean_names function to “clean” the column names of the 
 </table>
 </div></div></div>
 </div>
-<p>This may not seem that useful for a dataframe with only two columns, but for a data frame with many columns, using the clean_names function could save a lot of time.</p>
+<p>This may not seem that useful for a dataframe with only two columns, but for a data frame with many columns, or if you are working with many dataframes, using the clean_names function could save a lot of time.</p>
 </section>
 <section id="exploring-the-case-parameter">
 <h3>Exploring the case parameter:<a class="headerlink" href="#exploring-the-case-parameter" title="Link to this heading"></a></h3>
 <p>The clean_names function also has an optional parameter, case, which specifics the capitalization structure of the output column names. The default value for this parameter is “snake_case” and the other options are “CamelCase” and “lowerCamelCase”. snake_case uses only lowercase letters and spaces are replaced with underscores. “CamelCase” capitalizes the first letter of a name and every letter following a space. “lowerCamelCase” results in the first letter of the name being lowercase and the first letter following a space being capitalized.
 Below are some examples using this optional parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;make this SnaKe CaSe##&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sample 1&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 2&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 3&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 4&quot;</span><span class="p">]})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<span class="n">clean_names</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span> <span class="c1">#this has the default value for the case parameter which is snake_case</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>make this SnaKe CaSe##</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>make_this_snake_case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;make THIS CAMEL Case!!!&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sample 1&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 2&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 3&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 4&quot;</span><span class="p">]})</span>
+<span class="n">display</span> <span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="n">clean_names</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="s2">&quot;CamelCase&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>make THIS CAMEL Case!!!</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MakeThisCamelCase!!!</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Make this ***LOWER*** CAMEL caSe&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sample 1&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 2&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 3&quot;</span><span class="p">,</span> <span class="s2">&quot;sample 4&quot;</span><span class="p">]})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span>
+<span class="n">clean_names</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="s2">&quot;lowerCamelCase&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Make this ***LOWER*** CAMEL caSe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>makeThisLowerCamelCase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sample 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sample 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sample 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sample 4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 </section>
 <section id="visualise">
 <h2>Visualise<a class="headerlink" href="#visualise" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">datexplore</span></code> package, within the Python ecosystem, complements the functionalities of pandas, seaborn, and matplotlib by offering a unified approach to visualizing data. The <code class="docutils literal notranslate"><span class="pre">visualise</span></code> function simplifies the process of creating comprehensive visual analyses, especially during the early stages of a data project.</p>
+<p>The visualise function aims to provide a thorough visual exploration of a DataFrame. It focuses on three key areas:</p>
+<p><strong>Identifying Missing Values:</strong> Generates heatmap to visualize missing values in the DataFrame. This is crucial for assessing data quality and deciding on data cleaning strategies.</p>
+<p><strong>Correlation Analysis:</strong> Computes and displays a correlation heatmap for numeric variables. Understanding these relationships is vital for feature selection and predictive modeling.</p>
+<p><strong>Pairwise Variable Inspection:</strong> Create a grid of scatter plots for numeric variables. This helps in visually inspecting variable distributions and interactions.</p>
+<section id="usage-example">
+<h3>Usage Example<a class="headerlink" href="#usage-example" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Numeric_1&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s1">&#39;Numeric_2&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s1">&#39;Numeric_3&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s1">&#39;Category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Numeric_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;Numeric_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;Numeric_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Numeric_1</th>
+      <th>Numeric_2</th>
+      <th>Numeric_3</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60.0</td>
+      <td>55.772101</td>
+      <td>41.886092</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>66.599678</td>
+      <td>41.797397</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>42.284315</td>
+      <td>48.683661</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>62.653329</td>
+      <td>46.797470</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49.999846</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>80.0</td>
+      <td>NaN</td>
+      <td>24.569233</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>86.0</td>
+      <td>NaN</td>
+      <td>57.739063</td>
+      <td>G</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>99.0</td>
+      <td>64.628283</td>
+      <td>NaN</td>
+      <td>H</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>11.0</td>
+      <td>56.293119</td>
+      <td>NaN</td>
+      <td>I</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>18.0</td>
+      <td>35.333900</td>
+      <td>57.475740</td>
+      <td>J</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The created toy DataFrame has four columns, where three are numeric and one is categorical. It also includes deliberately introduced missing values to demonstrate the capabilities of the <code class="docutils literal notranslate"><span class="pre">visualise</span></code> function.</p>
+<p>Now, let’s run the <code class="docutils literal notranslate"><span class="pre">visualise</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualise</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c35d63a8771c44057fe9576ad68fffa71870d784c8e0146db7d35a75a1ba8ed6.png" src="_images/c35d63a8771c44057fe9576ad68fffa71870d784c8e0146db7d35a75a1ba8ed6.png" />
+<img alt="_images/ce2946571ccb54dec2a0ca0f88842907d2723c8c92b8181bb20d5b4881a0e349.png" src="_images/ce2946571ccb54dec2a0ca0f88842907d2723c8c92b8181bb20d5b4881a0e349.png" />
+<img alt="_images/5d410e24eadf65b99beed5434e7f4f2b9b6452a2b6c7137511f0e0c1a0d87e6a.png" src="_images/5d410e24eadf65b99beed5434e7f4f2b9b6452a2b6c7137511f0e0c1a0d87e6a.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x400 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="detect-outliers">
 <h2>Detect outliers<a class="headerlink" href="#detect-outliers" title="Link to this heading"></a></h2>
+<p>In data analysis, outliers can either reveal critical insights or introduce annoying biases. The detect_outliers() function is an easy to use tool for detecting and categorizing outliers in Pandas Data Frames. This function uses the Interquartile Range (IQR) and standard deviation to identify and categorize its outliers. It then outputs the outliers to a Data Frame in a format that is simple to use and explore. By quickly identifying the most extreme outliers with our function, you can immediately get a sense of the scale of the problem the outliers might present. There are many real-world examples where disproportionate outliers make otherwise useful summary statistics unreliable. For example, detect_outliers() should be useful for real estate pricing. Data analysis on a real estate dataset can be compromised, when that dataset includes a few luxury homes priced significantly higher than the average. These extreme home values introduce a substantial skew, distorting the overall analysis. Our function enables you to swiftly identify and categorize these outliers. It also provides their index locations in the output Data Frame. Once you have the index of the outliers, all that’s required is a few extra lines of code to remove these anomalous entries from your original dataset, ensuring a more balanced analysis!</p>
+<section id="id1">
+<h3>Usage example<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>To give a simple demonstration on how the function is used, let’s create a sample toy Data Frame (we can imagine the columns are features in the housing data set referenced above).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#generate a dataframe with two numerical columns, both having 2 outliers and one categorical column</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;House Price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">2380</span><span class="p">,</span> <span class="mi">2450</span><span class="p">],</span>  <span class="c1"># Prices in thousands, including outliers</span>
+    <span class="s1">&#39;Square Feet&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">1800</span><span class="p">,</span> <span class="mi">2100</span><span class="p">,</span> <span class="mi">1900</span><span class="p">,</span> <span class="mi">1600</span><span class="p">,</span> <span class="mi">1700</span><span class="p">,</span> <span class="mi">1750</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">1700</span><span class="p">,</span> <span class="mi">1800</span><span class="p">,</span> <span class="mi">1450</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">5400</span><span class="p">,</span> <span class="mi">6800</span><span class="p">],</span>  <span class="c1"># Size in square feet</span>
+    <span class="s1">&#39;Location&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Suburban&#39;</span><span class="p">,</span> <span class="s1">&#39;Rural&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Suburban&#39;</span><span class="p">,</span> <span class="s1">&#39;Rural&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Suburban&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Rural&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Suburban&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">,</span> <span class="s1">&#39;Urban&#39;</span><span class="p">]</span>  <span class="c1"># Locations</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have our dataframe with two extreme outliers, let’s use the function to see what useful information we find on the outliers of our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">detect_outliers</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        column  index  outlier_value  deviation category
+0  House Price      8            150     19.375     Mild
+1  House Price     13           2380   2000.000  Extreme
+2  House Price     14           2450   2070.000  Extreme
+3  Square Feet     13           5400   2925.000   Severe
+4  Square Feet     14           6800   4325.000  Extreme
+</pre></div>
+</div>
+</div>
+</div>
+<p>The detect_outliers output returns the Data Frame shown above. A simple print function call will output the data in a clean, easy to read format.
+The column name of the outlier, it’s index, the value, it’s deviation and a categorical description of how large the outlier is.
+The outlier information can be used with pandas as needed to transform the original data frame.</p>
+<p>For example, to remove the outliers from the original Data Frame using the output from our detect_outliers function you would.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the &#39;extreme&#39; outlier index locations</span>
+<span class="n">extreme_indices</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Extreme&#39;</span><span class="p">][</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
+
+<span class="c1"># Drop the rows from the main Data Frame that correspond to these indices</span>
+<span class="n">df_outlier_free</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">extreme_indices</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_outlier_free</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    House Price  Square Feet  Location
+0           250         1500     Urban
+1           300         2000  Suburban
+2           275         1800     Rural
+3           320         2100     Urban
+4           310         1900  Suburban
+5           290         1600     Rural
+6           280         1700     Urban
+7           265         1750  Suburban
+8           150         1500     Urban
+9           225         1700     Urban
+10          300         1800     Rural
+11          250         1450     Urban
+12          210         1300  Suburban
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
