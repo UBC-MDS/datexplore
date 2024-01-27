@@ -25,6 +25,7 @@ Functions
 
    Make all column names in a dataframe such that the names only use letters, numbers, and underscores.
    Capitalization format is specifed using the case parameter.
+   This function works "in place" meaning it changes the input dataframe while also returning a dataframe.
 
    :param data: Dataframe containing data with column names.
    :type data: pandas.core.frame.DataFrame

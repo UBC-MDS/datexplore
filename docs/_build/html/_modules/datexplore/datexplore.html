@@ -85,7 +85,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean all column names of a dataframe.</span>
 
 <span class="sd">    Make all column names in a dataframe such that the names only use letters, numbers, and underscores. </span>
-<span class="sd">    Capitalization format is specifed using the case parameter. </span>
+<span class="sd">    Capitalization format is specifed using the case parameter.</span>
+<span class="sd">    This function works &quot;in place&quot; meaning it changes the input dataframe while also returning a dataframe.  </span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -132,7 +133,7 @@
             <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">char</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">):</span>
                     <span class="n">new</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="n">new</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="n">new</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s2">&quot;lowerCamelCase&quot;</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>

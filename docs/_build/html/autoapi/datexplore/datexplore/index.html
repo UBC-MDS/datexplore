@@ -7,7 +7,7 @@
   <title>datexplore.datexplore &mdash; datexplore  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
 
   
@@ -116,7 +116,8 @@
 <span class="sig-prename descclassname"><span class="pre">datexplore.datexplore.</span></span><span class="sig-name descname"><span class="pre">clean_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'snake_case'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/datexplore/datexplore.html#clean_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datexplore.datexplore.clean_names" title="Link to this definition"></a></dt>
 <dd><p>Clean all column names of a dataframe.</p>
 <p>Make all column names in a dataframe such that the names only use letters, numbers, and underscores.
-Capitalization format is specifed using the case parameter.</p>
+Capitalization format is specifed using the case parameter.
+This function works “in place” meaning it changes the input dataframe while also returning a dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
