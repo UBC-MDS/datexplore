@@ -19,15 +19,20 @@ Jordan Cairns, Sid Grover, Scout McKee
 
 ## Installation
 
-The following code should be ran to install the package. 
+The following code should be ran to install the package: 
+```bash
+pip install datexplore
+cd datexplore
+```
+To install poetry:
 ``` bash
-conda env create -f environment.yml
-conda activate datexplore_env
+#Install poetry
+pip install poetry
 poetry install
 ```
 To run the tests run: 
 ``` bash
-pytest tests/
+pytest tests/*
 ```
 ## Outline
 
