@@ -31,6 +31,8 @@ jobs:
         with:
           files: ./coverage.xml
           fail_ci_if_error: false
+          env:
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build documentation
         run: poetry run make html --directory docs/
