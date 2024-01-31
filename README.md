@@ -34,6 +34,13 @@ To run the tests run:
 ``` bash
 pytest tests/*
 ```
+
+To get coverage report:
+```bash
+pytest --cov=datexplore --cov-report html tests/
+cd htmlcov
+open index.html
+```
 ## Outline
 
 Datexplore is a python package for the early stages of a data analysis project. It contains tools helpful for exploratory data analysis and data cleaning. The aim of this package is to help with some common tasks involved in these early stages of projects. The package includes tools for common EDA visualizations, data cleaning procedures, and detecting outlier numerical data.
