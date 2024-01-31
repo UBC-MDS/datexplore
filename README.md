@@ -1,6 +1,18 @@
 # datexplore
 [![Documentation Status](https://readthedocs.org/projects/datexplore/badge/?version=latest)](https://datexplore.readthedocs.io/en/latest/?badge=latest)
-A package for exploratory data analysis and data cleaning.
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![codecov](https://codecov.io/gh/[UBC-MDS]/datexplore/branch/main/graph/badge.svg?token=ADDTOKENHEREWHOHASTHETOKEN)](https://codecov.io/gh/[UBC-MDS]/datexplore)
+[![ci-cd](https://github.com/UBC-MDS/datexplore/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/datexplore/actions/workflows/ci-cd.yml)
+
+[![License: CC](https://img.shields.io/badge/License-CC-red.svg)](https://opensource.org/licenses/CC)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![version](https://img.shields.io/pypi/v/datexplore)](https://pypi.org/project/datexplore/)
+[![PyPI version](https://badge.fury.io/py/datexplore.svg)](https://badge.fury.io/py/datexplore)
+[![Python 3.9.0](https://img.shields.io/badge/python-3.12.0-green.svg)](https://www.python.org/downloads/release/python-3120/)
+
+
+
+Datexplore is a Python package meticulously crafted for the dynamic data scientist looking for a one-stop solution for exploratory data analysis and data visualisation. Datexplore is committed to transforming your data journey into an insightful and enjoyable experience through several easy-to-use functions. It is particularly useful for those who wish to automate the tedious bits of the EDA process, while still having control over their data.
 
 ## Contributors
 
@@ -8,15 +20,27 @@ Jordan Cairns, Sid Grover, Scout McKee
 
 ## Installation
 
-The following code should be ran to install the package. 
+The following code should be ran to install the package: 
+```bash
+pip install datexplore
+cd datexplore
+```
+To install poetry:
 ``` bash
-conda env create -f environment.yml
-conda activate datexplore_env
+#Install poetry
+pip install poetry
 poetry install
 ```
 To run the tests run: 
 ``` bash
-pytest tests/
+pytest tests/*
+```
+
+To get coverage report:
+```bash
+pytest --cov=datexplore --cov-report html tests/
+cd htmlcov
+open index.html
 ```
 ## Outline
 
