@@ -6,7 +6,6 @@
 
 [![License: CC](https://img.shields.io/badge/License-CC-red.svg)](https://opensource.org/licenses/CC)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 [![version](https://img.shields.io/pypi/v/datexplore)](https://pypi.org/project/datexplore/)
 [![PyPI version](https://badge.fury.io/py/datexplore.svg)](https://badge.fury.io/py/datexplore)
 [![Python 3.9.0](https://img.shields.io/badge/python-3.12.0-green.svg)](https://www.python.org/downloads/release/python-3120/)
