@@ -14,6 +14,8 @@
 
 Datexplore is a Python package meticulously crafted for the dynamic data scientist looking for a one-stop solution for exploratory data analysis and data visualisation. Datexplore is committed to transforming your data journey into an insightful and enjoyable experience through several easy-to-use functions. It is particularly useful for those who wish to automate the tedious bits of the EDA process, while still having control over their data.
 
+Documentation: [ReadTheDocs](https://datexplore.readthedocs.io/en/latest/?badge=latest)
+
 ## 👥 Contributors
 
 Jordan Cairns, Sid Grover, Scout McKee
