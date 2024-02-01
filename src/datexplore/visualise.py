@@ -7,7 +7,7 @@ def visualise(df):
 
     This function creates three types of plots:
     1. A heatmap of missing values: Each cell in the heatmap represents a value in the DataFrame. Cells are colored differently to indicate whether the value is missing or not. 
-This helps in identifying patterns or areas with missing data.
+    This helps in identifying patterns or areas with missing data.
     2. A correlation heatmap: This heatmap shows the correlation coefficients between all pairs of columns in the DataFrame.
        High positive or negative values indicate strong relationships, while values close to zero suggest weak relationship. This is useful for understanding the relationships between variables.
     3. A pairplot: This creates a grid of scatter plots for each pair of variables in the DataFrame. It helps in visualizing the distribution of individual variables and the relationships between them.
@@ -37,15 +37,18 @@ This helps in identifying patterns or areas with missing data.
         plt.title('Heatmap of Missing Values in DataFrame')
         plt.xlabel('Columns')
         plt.ylabel('Rows')
-        plt.show()
+        if display==True:
+            plt.show()
     
     if not df.select_dtypes(include='number').empty: 
         corr = df.select_dtypes(include='number').corr()
         plt.figure(figsize=(10, 4))
         sns.heatmap(corr, annot = True, cmap = 'coolwarm')
         plt.title('Correlation Heatmap of Variables in DataFrame')
-        plt.show()
-
+        if display==True:
+            plt.show()
+          
         sns.pairplot(df)
         plt.figure(figsize=(10, 4))
-        plt.show()
+        if display==True:
+            plt.show()
