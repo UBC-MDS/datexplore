@@ -14,11 +14,11 @@
 
 Datexplore is a Python package meticulously crafted for the dynamic data scientist looking for a one-stop solution for exploratory data analysis and data visualisation. Datexplore is committed to transforming your data journey into an insightful and enjoyable experience through several easy-to-use functions. It is particularly useful for those who wish to automate the tedious bits of the EDA process, while still having control over their data.
 
-## Contributors
+## 👥 Contributors
 
 Jordan Cairns, Sid Grover, Scout McKee
 
-## Installation
+## ⚙️ Installation
 
 The following code should be ran to install the package: 
 ```bash
@@ -42,7 +42,7 @@ pytest --cov=datexplore --cov-report html tests/
 cd htmlcov
 open index.html
 ```
-## Outline
+## 📖 Outline
 
 Datexplore is a python package for the early stages of a data analysis project. It contains tools helpful for exploratory data analysis and data cleaning. The aim of this package is to help with some common tasks involved in these early stages of projects. The package includes tools for common EDA visualizations, data cleaning procedures, and detecting outlier numerical data.
 
@@ -64,14 +64,14 @@ The clean_names function resembles pyjanitor’s approach
 
 The detect_outliers function takes an approach, similar to methods found in libraries like SciPy and Scikit-learn, but combines them in a single function. While these libraries provide comprehensive tools for statistical analysis, including outlier detection, Datexplore's outlier function allows all the data to be viewed within a single dataframe and a single function call, making the process simpler.
 
-## Dependencies
+## 🔗 Dependencies
 
 * Python 3 or greater
 * Matplotlib.pyplot
 * Seaborn
 * pandas
 
-## Usage
+## 📊 Usage
 
 Example usage:
 ```python
@@ -90,7 +90,7 @@ Example usage:
 # returns index, deviation and category of outliers
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Interested in contributing? Check out the contributing guidelines in the root project directory. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
@@ -98,6 +98,6 @@ Interested in contributing? Check out the contributing guidelines in the root pr
 
 `datexplore` was created by Jordan Cairns, Sid Grover, Scout McKee. It is licensed under the terms of the MIT license.
 
-## Credits
+## 👏 Credits
 
 `datexplore` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
