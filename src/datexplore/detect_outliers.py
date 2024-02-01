@@ -34,6 +34,9 @@ def detect_outliers(df):
     >> df = pd.DataFrame({'data': [1, 2, 3, 4, 5, 6, 100]})
     >> outlier_info = detect_outliers(df)
     >> print(outlier_info)
+    >> Output:
+         column  index  outlier_value  deviation category
+    0    data      6            100        87.0  Extreme
     """
 
     if not isinstance(df, pd.DataFrame):
