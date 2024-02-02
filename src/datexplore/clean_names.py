@@ -24,6 +24,8 @@ def clean_names(data, case = "snake_case"):
     >>> import pandas as pd
     >>> data = pd.DataFrame{'Even Numbers': [2, 4, 6, 8],'odd numbers': [1, 3, 5, 7]}
     >>> clean_data = clean_names(data)
+    >>> print(clean_data.columns)
+    Index(['even_numbers', 'odd_numbers'], dtype='object')
     """
 
     if case not in ["snake_case", "CamelCase", "lowerCamelCase"]: 

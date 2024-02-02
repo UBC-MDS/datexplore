@@ -34,14 +34,14 @@ def detect_outliers(df):
     >> df = pd.DataFrame({'data': [1, 2, 3, 4, 5, 6, 100]})
     >> outlier_info = detect_outliers(df)
     >> print(outlier_info)
+    >> Output:
+         column  index  outlier_value  deviation category
+    0    data      6            100        87.0  Extreme
     """
-
     if not isinstance(df, pd.DataFrame):
         raise TypeError("Input must be a pandas DataFrame")
 
-    # DataFrame to store outlier information
-    outliers_info = pd.DataFrame(columns=['column', 'index', 'outlier_value', 
-                                          'deviation', 'category'])
+    outliers_list = []
 
     for column in df.select_dtypes(include='number').columns:
         q1 = df[column].quantile(0.25)
@@ -55,18 +55,31 @@ def detect_outliers(df):
 
         # Calculate deviation and category
         for index, outlier in outliers.iterrows():
-            deviation = abs(outlier[column] - (lower_bound if outlier[column] 
-                                               < lower_bound else upper_bound))
-            sd_deviation = abs(outlier[column] - df[column].mean()) / df[column].std()
+            
+            #recalculate the quartiles to not consider the outlier          
+            filtered_values = df[column].drop(index)
+            new_q1 = filtered_values.quantile(0.25)
+            new_q3 = filtered_values.quantile(0.75)
+            new_iqr = new_q3 - new_q1
+            new_lower_bound = q1 - 1.5 * new_iqr
+            new_upper_bound = q3 + 1.5 * new_iqr
+            deviation = abs(outlier[column] - (new_lower_bound if outlier[column] 
+                                               < new_lower_bound else new_upper_bound))
+            mean_filtered = filtered_values.mean()
+            std_filtered = filtered_values.std()
 
-            if deviation <= 3 * iqr:
-                category = 'Mild' if deviation <= 1.5 * iqr else 'Moderate'
+            sd_deviation = abs(outlier[column] - mean_filtered) / std_filtered
+
+            if deviation <= 3 * new_iqr:
+                category = 'Mild' if deviation <= 1.5 * new_iqr else 'Moderate'
             else:
                 category = 'Severe' if sd_deviation < 3 else 'Extreme'
 
-            outliers_info = outliers_info.append({'column': column, 'index': index, 
-                                                  'outlier_value': outlier[column], 
-                                                  'deviation': deviation, 
-                                                  'category': category}, ignore_index=True)
+            outlier_info = {'column': column, 'index': index, 
+                            'outlier_value': outlier[column], 
+                            'deviation': deviation, 'category': category}
 
-    return outliers_info
+            outliers_list.append(outlier_info)
+
+    outliers_info_df = pd.DataFrame(outliers_list)
+    return outliers_info_df
