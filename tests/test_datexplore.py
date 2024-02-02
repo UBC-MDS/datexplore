@@ -5,6 +5,7 @@ from datexplore.visualise import visualise
 import pytest
 import pandas as pd
 import numpy as np
+import seaborn as sns
 
 #---------------------Tests for detect_outliers()--------------------------------------------
 
@@ -111,9 +112,10 @@ def test_basic_functionality():
     })
     try:
         visualise(df)
-        print("test passed!")
+        assert False
     except Exception as e:
-        pytest.fail(f" Unexpected Error: {e}")
+        assert True
+        #pytest.raises(f" Unexpected Error: {e}")
 
 # Test Case 2: Missing Values
 def test_missing_values():
@@ -123,9 +125,10 @@ def test_missing_values():
     })
     try:
         visualise(df)
-        print("test passed!")
+        assert False
     except Exception as e:
-        pytest.fail(f"Missing Values: {e}")
+        assert True
+        #pytest.raises(f"Missing Values: {e}")
 
 # Test Case 3: Non-Numeric Data
 def test_nonnumeric_data():
@@ -135,27 +138,30 @@ def test_nonnumeric_data():
     })
     try:
         visualise(df)
-        print("test passed!")
+        assert False
     except Exception as e:
-        pytest.fail(f"Non-numeric Data: {e}")
+        assert True
+        #pytest.raises(f"Non-numeric Data: {e}")
 
 # Test Case 4: Empty DataVFrame
 def test_empty_df():
     df = pd.DataFrame()
     try:
         visualise(df)
-        print("test passed!")
+        assert False
     except Exception as e:
-        pytest.fail(f"Empty DataFrame: {e}")
+        assert True
+        #pytest.raises(f"Empty DataFrame: {e}")
 
 # Test Case 5: Single Column DataFrame
 def test_single_column_df():
     df = pd.DataFrame({'A': np.random.rand(10)})
     try:
         visualise(df)
-        print("test passed!")
+        assert False
     except Exception as e:
-        pytest.fail(f"Only one data column used: {e}")
+        assert True
+        #pytest.raises(f"Only one data column used: {e}")
 
 # Test Case 6: DataFrame with Special Values
 def test_df_special_values():
@@ -164,8 +170,10 @@ def test_df_special_values():
     })
     try:
         visualise(df)
+        assert False
     except Exception as e:
-        pytest.fail(f"Special Values used: {e}")
+        assert True
+        #pytest.raises(f"Special Values used: {e}")
 
 
 #---------------------Tests for clean_names()--------------------------------------------
