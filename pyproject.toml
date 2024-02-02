@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datexplore"
-version = "0.1.0"
+version = "0.0.1"
 description = "A package for exploratory data analysis and data cleaning."
 authors = ["Jordan Cairns, Sid Grover, Scout McKee"]
 license = "MIT"
