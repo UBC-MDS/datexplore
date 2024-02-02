@@ -1,6 +1,6 @@
-from datexplore.datexplore import clean_names
-from datexplore.datexplore import detect_outliers
-from datexplore.datexplore import visualise
+from datexplore.clean_names import clean_names
+from datexplore.detect_outliers import detect_outliers
+from datexplore.visualise import visualise
 
 import pytest
 import pandas as pd
