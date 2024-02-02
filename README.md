@@ -1,7 +1,7 @@
 # datexplore
 [![Documentation Status](https://readthedocs.org/projects/datexplore/badge/?version=latest)](https://datexplore.readthedocs.io/en/latest/?badge=latest)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/[UBC-MDS]/datexplore/branch/main/graph/badge.svg?token=ADDTOKENHEREWHOHASTHETOKEN)](https://codecov.io/gh/[UBC-MDS]/datexplore)
+[![codecov](https://codecov.io/gh/[UBC-MDS]/datexplore/branch/main/graph/badge.svg?token=90b323e5-fc71-47f2-a073-4793e224f820)](https://app.codecov.io/gh/UBC-MDS/datexplore/)
 [![ci-cd](https://github.com/UBC-MDS/datexplore/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/datexplore/actions/workflows/ci-cd.yml)
 
 [![License: CC](https://img.shields.io/badge/License-CC-red.svg)](https://opensource.org/licenses/CC)
