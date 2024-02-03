@@ -2,6 +2,25 @@
 
 
 
+## v0.0.2 (2024-02-03)
+
+### Fix
+
+* fix: removed section on poetry ([`469fd04`](https://github.com/UBC-MDS/datexplore/commit/469fd04d14aa481b7b8dae8ab318997a8714d19a))
+
+### Unknown
+
+* Merge pull request #105 from UBC-MDS/installation_fix
+
+fix: removed section on poetry ([`0c59606`](https://github.com/UBC-MDS/datexplore/commit/0c59606f3cac9890e196e42108fe18fc6202a933))
+
+* Merge pull request #104 from UBC-MDS/imports_example
+
+updated import statements ([`011da2b`](https://github.com/UBC-MDS/datexplore/commit/011da2b881a97e51d124d27e683340f19d744e9f))
+
+* updated import statements ([`4fa2960`](https://github.com/UBC-MDS/datexplore/commit/4fa2960365fcbc8b6921c48f002aa2257ebbe3f2))
+
+
 ## v0.0.1 (2024-02-02)
 
 ### Fix
